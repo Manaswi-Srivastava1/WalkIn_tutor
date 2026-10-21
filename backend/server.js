@@ -6,12 +6,13 @@ const bcrypt = require("bcryptjs");
 const { Tutor, DemoRequest, User, Session, Review } = require("./models");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // MongoDB ka address. Local computer par MongoDB isi address par chalta hai.
 const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/walkintutor";
 
 // Browser se aaya JSON data padhne ke liye (routes se PEHLE likhna zaroori hai)
+app.set("trust proxy", 1);
 app.use(express.json());
 
 // ------------------------------------------
